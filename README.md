@@ -13,3 +13,4 @@ providing a function that gets target test from user.
 
 
 
+_seft_ in Persian means Solid!
