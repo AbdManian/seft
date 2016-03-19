@@ -24,11 +24,14 @@ void Test::run() {
 
 }
 
+void Test::add_test_result(bool result, const char* file_name,
+        int line_number) {
+    TestRegistry::add_test_result(this, result, file_name, line_number);
+}
+
 void Test::teardown() {
 
 }
-
-
 
 const char* Test::get_test_case_name() {
     return test_case_name;

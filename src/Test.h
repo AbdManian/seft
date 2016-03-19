@@ -22,6 +22,8 @@ public:
 
     Test * get_next_test();
 
+    void add_test_result(bool result, const char * file_name, int line_number);
+
     virtual void setup();
     virtual void run();
     virtual void teardown();

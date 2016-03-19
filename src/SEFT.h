@@ -17,6 +17,11 @@
     void run();}  test_case_name##test_name##_instance;  \
     void test_case_name##test_name##_test::run ()
 
-
+#define ASSERT(condition)\
+    { if (condition) {\
+        add_test_result(true, __FILE__, __LINE__); \
+    } else {\
+        add_test_result(false, __FILE__, __LINE__); return;\
+    }}
 
 #endif /* SRC_SEFT_H_ */

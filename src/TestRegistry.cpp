@@ -42,4 +42,16 @@ TestRegistry& TestRegistry::instance() {
     return test_reg;
 }
 
+void TestRegistry::add_test_result(Test* _test, bool result,
+        const char* file_name, int line_number) {
+    instance().add_result(_test, result, file_name, line_number);
+}
+
+void TestRegistry::add_result(Test* _test, bool result,
+        const char* file_name, int line_number) {
+    test_runner->add_test_result(_test, result, file_name, line_number);
+}
+
 } /* namespace SEFT */
+
+

@@ -21,9 +21,15 @@ public:
 
     static void run_test(TestRunner* runner);
 
+    static void add_test_result(Test* _test, bool result,
+            const char * file_name, int line_number);
+
     void add(Test* _test);
 
     void run(TestRunner* runner);
+
+    void add_result(Test* _test, bool result, const char * file_name,
+            int line_number);
 private:
     static TestRegistry& instance();
     Test* head_test;

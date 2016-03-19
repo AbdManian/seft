@@ -27,9 +27,16 @@ void TestRunner::start(Test* test) {
     test_command = platform_get_test_command();
 #endif
 
+    num_nok_tests = 0;
+    num_ok_test = 0;
+    cur_test_ok = true;
+
+
     parse_test_command();
 
     walk_on_tests(test);
+
+    platform_report_test_results(num_ok_test,num_nok_tests);
 }
 
 const char* TestRunner::platform_get_test_command() {
@@ -64,6 +71,7 @@ void TestRunner::walk_on_tests(Test* test) {
     while (ts) {
 
         if (test_is_executable(ts)) {
+
             run_test(ts);
         }
 
@@ -72,9 +80,17 @@ void TestRunner::walk_on_tests(Test* test) {
 }
 
 void TestRunner::run_test(Test* test) {
+    platform_report_test_header(test->get_test_case_name(), test->get_test_name());
+
+    cur_test_ok = true;
     test->setup();
     test->run();
     test->teardown();
+    if (cur_test_ok) {
+        num_ok_test++;
+    } else {
+        num_nok_tests++;
+    }
 }
 
 void TestRunner::parse_test_command() {
@@ -96,4 +112,29 @@ void TestRunner::parse_test_command() {
     }
 }
 
+
+void TestRunner::add_test_result(Test* _test, bool result,
+        const char* file_name, int line_number) {
+
+    if (result==false){
+        /* Test failed */
+        cur_test_ok = false;
+        platform_report_failed_test(file_name, line_number, _test->get_test_case_name(),_test->get_test_name());
+    }
+}
+
+
+
+void TestRunner::platform_report_failed_test(const char* file_name,
+        int line_number, const char* test_case_name, const char* test_name) {
+}
+
+void TestRunner::platform_report_test_results(int _num_ok_tests,
+        int _num_nok_tests) {
+}
+
+void TestRunner::platform_report_test_header(const char* test_case_name,
+        const char* test_name) {
+}
 } /* namespace SEFT */
+

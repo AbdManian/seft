@@ -9,12 +9,40 @@ TEST(Felez, Mes   ) { printf("(Felez, Mes   ) \n"); }
 TEST(Felez, Sorb  ) { printf("(Felez, Sorb  ) \n"); }
 TEST(Ghaza, Kalam ) { printf("(Ghaza, Kalam ) \n"); }
 TEST(Ghaza, Badem ) { printf("(Ghaza, Badem ) \n"); }
-TEST(Fohsh, Zool  ) { printf("(Fohsh, Zool  ) \n"); }
+TEST(Fohsh, Zool  ) {
+    printf("(Fohsh, Zool  ) \n");
+    ASSERT(0);
+}
 
-class MyTestRunner : TestRunner {
+class MyTestRunner : public TestRunner {
 public:
+
+
+    void platform_report_failed_test(const char * file_name,
+            int line_number, const char * test_case_name,
+            const char * test_name) {
+
+        printf("ERROR: %s.%s failed in line=%d %s\n",test_case_name,test_name,line_number,file_name);
+
+    }
+
+    void platform_report_test_results(int _num_ok_tests,
+            int _num_nok_tests) {
+        if (_num_nok_tests) {
+            printf("Test failed. Ok tests= %d/%d\n",_num_ok_tests,(_num_ok_tests+_num_nok_tests));
+        } else {
+            printf("All tests passed. Ok tests = %d\n",_num_ok_tests);
+        }
+    }
+
+    void platform_report_test_header(const char * test_case_name,
+            const char * test_name) {
+        printf(" -------------------------------------- \n");
+        printf(" Start %s.%s\n",test_case_name, test_name);
+    }
+
     const char * platform_get_test_command() {
-        return "Felez";
+        return "all";//"Felez.Mes";
     }
 
 };
@@ -23,8 +51,8 @@ public:
 
 int main()
 {
-    TestRunner tr;
-    TestRegistry::run_test(&tr);
+    MyTestRunner mtr;
+    TestRegistry::run_test(&mtr);
 
     printf("Done!\n");
     return 0;
