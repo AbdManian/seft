@@ -3,36 +3,29 @@
 #include "TestRegistry.h"
 using namespace SEFT;
 
-TEST(Kalam,Polo)
-{
-    printf("hello kp\n");
-}
 
-TEST(Antar,Sagi)
-{
-    printf("hello kp\n");
-}
+TEST(Felez, Tala  ) { printf("(Felez, Tala  ) \n"); }
+TEST(Felez, Mes   ) { printf("(Felez, Mes   ) \n"); }
+TEST(Felez, Sorb  ) { printf("(Felez, Sorb  ) \n"); }
+TEST(Ghaza, Kalam ) { printf("(Ghaza, Kalam ) \n"); }
+TEST(Ghaza, Badem ) { printf("(Ghaza, Badem ) \n"); }
+TEST(Fohsh, Zool  ) { printf("(Fohsh, Zool  ) \n"); }
 
-TEST(Shalgham,Rashti)
-{
-    printf("hello kp\n");
-}
+class MyTestRunner : TestRunner {
+public:
+    const char * platform_get_test_command() {
+        return "Felez";
+    }
 
-TEST(Shalgham,Dashti)
-{
-    printf("hello kp\n");
-}
+};
+
+
 
 int main()
 {
+    TestRunner tr;
+    TestRegistry::run_test(&tr);
 
-    Test* ts = TestRegistry::get_first_test();
-    int i=0;
-    while (ts) {
-        i++;
-        printf("Test %d %s.%s\n",i,ts->get_test_case_name(),ts->get_test_name());
-        ts = ts->get_next_test();
-    }
     printf("Done!\n");
     return 0;
 }
