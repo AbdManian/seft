@@ -9,6 +9,7 @@
 #define SRC_TESTREGISTRY_H_
 
 #include "Test.h"
+#include "TestRunner.h"
 
 namespace SEFT {
 
@@ -18,14 +19,16 @@ public:
 
     static void add_test(Test* _test);
 
-    static Test* get_first_test();
+    static void run_test(TestRunner* runner);
 
     void add(Test* _test);
 
+    void run(TestRunner* runner);
 private:
     static TestRegistry& instance();
     Test* head_test;
     Test* last_test;
+    TestRunner* test_runner;
 };
 
 } /* namespace SEFT */

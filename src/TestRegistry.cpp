@@ -28,8 +28,13 @@ TestRegistry::TestRegistry() :
         head_test(0), last_test(0) {
 }
 
-Test* TestRegistry::get_first_test() {
-    return instance().head_test;
+void TestRegistry::run_test(TestRunner* runner) {
+    instance().run(runner);
+}
+
+void TestRegistry::run(TestRunner* runner) {
+    test_runner = runner;
+    test_runner->start(head_test);
 }
 
 TestRegistry& TestRegistry::instance() {
