@@ -14,6 +14,24 @@ TEST(Fohsh, Zool  ) {
     ASSERT(0);
 }
 
+
+DECLARE_TESTF(Kalam)
+
+    int i;
+
+SETUP()
+{
+    i=90;
+}
+
+TEARDOWN()
+{
+
+}
+
+END_DECLARE_TESTF()
+
+
 class MyTestRunner : public TestRunner {
 public:
 

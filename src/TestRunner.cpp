@@ -10,6 +10,9 @@
 
 #define ALL_TEST_STR "all"
 
+#define STRINGIZE(x) #x
+#define STRINGIZE_VALUE_OF(x) STRINGIZE(x)
+
 namespace SEFT {
 
 TestRunner::TestRunner() {
@@ -22,7 +25,7 @@ TestRunner::~TestRunner() {
 void TestRunner::start(Test* test) {
 
 #ifdef __EXT_TEST_COMMAND__
-    test_command = __EXT_TEST_COMMAND__;
+    test_command = STRINGIZE_VALUE_OF(__EXT_TEST_COMMAND__);
 #else
     test_command = platform_get_test_command();
 #endif

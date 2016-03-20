@@ -14,6 +14,8 @@ class Test {
 public:
     Test(const char * test_case_name, const char * test_name);
 
+    virtual ~Test();
+
     const char * get_test_case_name();
 
     const char * get_test_name();

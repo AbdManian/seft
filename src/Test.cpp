@@ -29,6 +29,10 @@ void Test::add_test_result(bool result, const char* file_name,
     TestRegistry::add_test_result(this, result, file_name, line_number);
 }
 
+Test::~Test() {
+
+}
+
 void Test::teardown() {
 
 }
