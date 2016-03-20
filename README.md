@@ -48,14 +48,21 @@ int main()
     return 0;
 }
 ```
+#### How select a test for execution
+Target test is determined using a string called _test_command_. 
+Supported formats for _test_command_ are:
+* *all* Run all registred tests
+* *TestCaseXX.MyTest* Run a single test. MyTest under TestCaseXX
+* *TestCaseXX* Run all tests under TestCaseXX
 
+_Test_command_ can be provided by `const char * platform_get_test_command` based 
+on the platform. Second method is by defining `__EXT_TEST_COMMAND__` macro on
+compile time using build system (for example Make or Scons). 
+The second method is implemented in the provided Scons file. 
 
-## Porting
-User only needs to implement the error-reporting function based on the 
-embedded target. 
-Tests to be run, can be selected using build system or optionally by 
-providing a function that gets target test from user.
+`$ scons run-test=TestCaseXX.MyTest`
 
-
+This command runs _TestCaseXX.MyTest_ by defining `__EXT_TEST_COMMAND__`. In this mode
+`platform_get_test_command` is ignored. 
 
 _seft_ in Persian means Solid!
