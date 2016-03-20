@@ -38,10 +38,12 @@
 
 #define DECLARE_TESTF(test_case_name)\
     class test_case_name##_test_fixture : public Test \
-    { public: test_case_name##_test_fixture(const char* test_case_name, const char * test_name) : Test (test_case_name , test_name) {}
+    { public: test_case_name##_test_fixture( \
+            const char* test_case_name, const char * test_name) : \
+    Test (test_case_name , test_name) {}
 
 #define SETUP()\
-    void setUp ()
+    void setup ()
 
 #define TEARDOWN() \
     void teardown()

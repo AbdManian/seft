@@ -21,15 +21,24 @@ DECLARE_TESTF(Kalam)
 
 SETUP()
 {
-    i=90;
+    i = 90;
+    printf("Setup Kalam i=%d\n",i);
+    i = 80;
 }
 
 TEARDOWN()
 {
+    printf("Teardown kalam i=%d\n",i);
+    i=900;
 
 }
 
 END_DECLARE_TESTF()
+
+
+TESTF(Kalam, FirstTest) { printf("Run Kalam.FirstTest Here i=%d\n",i);}
+TESTF(Kalam, Second) { printf("Run Kalam.SecondTest Here i=%d\n",i);}
+
 
 
 class MyTestRunner : public TestRunner {

@@ -86,9 +86,11 @@ void TestRunner::run_test(Test* test) {
     platform_report_test_header(test->get_test_case_name(), test->get_test_name());
 
     cur_test_ok = true;
+
     test->setup();
     test->run();
     test->teardown();
+
     if (cur_test_ok) {
         num_ok_test++;
     } else {
