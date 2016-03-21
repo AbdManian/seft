@@ -3,10 +3,7 @@
  *
  *  Created on: Mar 22, 2016
  *      Author: abd
- */
-
-
-/*
+ *
  * Simple test for checking MyStack class using SEFT
  * framework
  */

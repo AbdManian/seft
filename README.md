@@ -48,7 +48,68 @@ int main()
     return 0;
 }
 ```
-#### How select a test for execution
+
+## Write Tests in SEFT
+Simple tests:
+```c++
+#include "SEFT.h" /* The only required include file */ 
+
+/* All test are registed automaticly */
+
+TEST(TestCaseXX, TestName) {
+    /* You can call this test using "TestCaseXX.TestName". */
+    /* Content of the test */
+
+    /* Use ASSERT macro for checking properties */
+    ASSERT(1==1);
+}
+
+Test(TestCaseXX, AnotherTest) {
+    /* This is another test under TestCaseXX */
+}
+
+Test(OtherTestCase, NewTest) {
+    /* ..... */
+}
+```
+
+Writing test-fixtures is simple to.
+```
+#include "SEFT.h" /* The only required include file */ 
+
+DECLARE_TESTF(TestCaseFixtureXX)
+
+/* Define local variables here.
+ */
+int SomeVar;
+
+/* Optionally define Setup or Teardown functions */
+SETUP()
+{
+    SomeVar = 10;
+}
+
+TEARDOWN()
+{
+    SomeVar = 0;
+}
+END_DECLARE_TESTF() /* Always Finish test-fixtures with END_DECLARE_TESTF */
+
+/* 1. Tests under test-fixture should use TESTF() instead of TEST()
+ * 2. Test-case name should be same as test-case used in fixture
+ */
+TESTF(TestCaseFixtureXX, NameOfTest)
+{
+    ASSERT(SomeVar==19);
+}
+
+TESTF(TestCaseFixtureXX, AnotherTest) {
+
+    /* Body of the test .... */
+}
+```
+
+## How select a test for execution
 Target test is determined using a string called _test_command_. 
 Supported formats for _test_command_ are:
 * *all* Run all registred tests

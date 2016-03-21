@@ -3,13 +3,9 @@
  *
  *  Created on: Mar 22, 2016
  *      Author: abd
- */
-
-
-
-
-/*
- * Show usage of the test-fixture in SEFT framework
+ *
+ *  Show usage of the test-fixture in SEFT framework
+ *
  */
 
 
@@ -32,7 +28,7 @@ SETUP()
 
 TEARDOWN()
 {
-    /* Definition of teardown of setup functions are optional */
+    /* Definition of teardown or setup functions are optional */
 }
 
 END_DECLARE_TESTF()
