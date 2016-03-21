@@ -13,13 +13,39 @@
 template<class T>
 class MyStack {
 public:
-    void push(T value);
-    T pull();
-    void clear();
-    int size();
-    bool is_empty();
-    bool is_full();
-    int max_size();
+    void push(T value)  {
+        _stack[cnt] = value;
+        cnt++;
+    }
+
+    T pull() {
+        cnt--;
+        return _stack[cnt];
+    }
+
+    void clear() {
+        cnt = 0;
+    }
+
+    int size() {
+        return cnt;
+    }
+
+
+    bool is_empty(){
+        return cnt==0;
+    }
+
+    bool is_full() {
+        return cnt>=_MAX_STACK_SIZE;
+    }
+
+
+    int max_size() {
+        return _MAX_STACK_SIZE;
+    }
+
+
 private:
     T _stack[_MAX_STACK_SIZE];
     int cnt;

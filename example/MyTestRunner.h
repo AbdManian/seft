@@ -18,7 +18,7 @@ public:
             int line_number, const char * test_case_name,
             const char * test_name) {
 
-        printf("ERROR: %s.%s failed in line=%d %s\n",test_case_name,test_name,line_number,file_name);
+        printf("%s:%d error: %s.%s failed\n",file_name ,line_number ,test_case_name,test_name);
 
     }
 
