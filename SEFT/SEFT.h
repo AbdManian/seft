@@ -37,7 +37,7 @@
 
 
 #define DECLARE_TESTF(test_case_name)\
-    class test_case_name##_test_fixture : public Test \
+    class test_case_name##_test_fixture : public SEFT::Test \
     { public: test_case_name##_test_fixture( \
             const char* test_case_name, const char * test_name) : \
     Test (test_case_name , test_name) {}
