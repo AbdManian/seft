@@ -5,7 +5,7 @@ env = Environment(CPPPATH = ['SEFT'])
 runtest = ARGUMENTS.get("run-test", None)
 
 if runtest:
-	runner = env.Object('src/TestRunner.cpp', CPPDEFINES=[('__EXT_TEST_COMMAND__',runtest)])
+	runner = env.Object('SEFT/TestRunner.cpp', CPPDEFINES=[('__EXT_TEST_COMMAND__',runtest)])
 else:
 	runner = 'SEFT/TestRunner.cpp'
 	
@@ -13,7 +13,7 @@ else:
 test_src = ['SEFT/Test.cpp', 'SEFT/TestRegistry.cpp', runner]
 
 
-srcs = test_src + Glob('test/*.cpp')
+srcs = test_src + Glob('example/*.cpp')
 
 
 program = env.Program(target, srcs)
