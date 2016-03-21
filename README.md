@@ -36,7 +36,7 @@ public:
 };
 ```
 The derived class is used in main function.
-```C++
+```c++
 #include "TestRegistry.h"
 #include "MyTestRunner.h"
 
@@ -74,8 +74,8 @@ Test(OtherTestCase, NewTest) {
 ```
 
 Writing test-fixtures is simple to.
-```
-#include "SEFT.h" /* The only required include file */ 
+```c++
+#include "SEFT.h" 
 
 DECLARE_TESTF(TestCaseFixtureXX)
 
